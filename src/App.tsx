@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "./components/ui/button/button";
 import { Checkbox } from "./components/ui/checkbox/checkbox";
 import { Input } from "./components/ui/input/input";
+import { Textarea } from "./components/ui/textarea/textarea";
 import { Title } from "./components/ui/title/title";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Title weight="regular">павап</Title>
       <Checkbox variant="active" className="checkbox"></Checkbox>
       <Input  className="input" name="input"></Input>
+      <Textarea className="textarea" name="textarea" value="hello"></Textarea>
     </div>
   );
 }
@@ -19,5 +21,5 @@ function App() {
 export default App;
 
 
-// Сделать компоненты: инпут, поле ввода текста (textarea), контекст, хукформ, 
+// Сделать компоненты:  поле ввода текста (textarea), контекст, хукформ, 
 // Застилизовать все компоненты
