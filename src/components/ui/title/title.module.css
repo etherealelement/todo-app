@@ -1,7 +1,9 @@
 .title {
-  color: red;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: black;
 }
-
 
 .bold {
   font-weight: 700;

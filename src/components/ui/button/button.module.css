@@ -1,6 +1,5 @@
 .button {
-  padding: 10px;
-  border-radius: 6px;
+  padding: 10px 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,15 +14,15 @@
 
 
 .primary {
-  background-color: teal;
+  background: rgba(85, 132, 122, 0.97);
   color: white;
 
 }
 
 .outlined {
-  border: 1px solid teal;
+  background: rgba(85, 132, 122, 0.97);
   color: black;
 }
 
 
-.icon {}
+/* .icon {} */
