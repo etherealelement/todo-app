@@ -5,6 +5,7 @@ import { Input } from "./components/ui/input/input";
 import { Textarea } from "./components/ui/textarea/textarea";
 import { Title } from "./components/ui/title/title";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { Select } from "./components/ui/select/select"
 
 export const validEmail =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -74,6 +75,7 @@ function App() {
         <button>submit</button>
       </form>
       <Textarea className="textarea" name="textarea" value="hello"></Textarea>
+      <Select className="select" name="select"></Select>
     </div>
   );
 }
