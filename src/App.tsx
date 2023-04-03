@@ -81,4 +81,4 @@ function App() {
 export default App;
 
 
-// React-hook-form, переделать textarea с форвард импут, селект + документация react-hook-form 
+// React-hook-form,селект + документация react-hook-form 
