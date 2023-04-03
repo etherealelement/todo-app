@@ -1,9 +1,4 @@
 import { FC } from 'react';
-<<<<<<< HEAD
-
-export const select: FC = () => {
-	return <div>select</div>;
-=======
 import { SelectProps } from './select.props';
 import styles from "./select.module.css";
 import { SubmitHandler, useForm} from "react-hook-form";
@@ -27,5 +22,4 @@ export const Select: FC<SelectProps> = ({name, placeholder,value, className, ...
 
 		</form>
 	</>
->>>>>>> c27f8275255897f9b15e6c1b4aa269fb36c8cd58
 };
