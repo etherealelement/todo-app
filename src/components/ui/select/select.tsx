@@ -12,14 +12,12 @@ export const Select: FC<SelectProps> = ({name, placeholder,value, className, ...
 
 	return <>
 		<form onSubmit={handleSubmit(onSubmit)}>
-
 	<select {...register("name")} className={styles.select}>
         <option>Выберите пункт</option>
 		<option>Пункт 1</option>
 		<option>Пункт 2</option>
 		<option>Пункт 3</option>
 </select>
-
 		</form>
 	</>
 };

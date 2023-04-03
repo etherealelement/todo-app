@@ -4,7 +4,15 @@ import { Checkbox } from "./components/ui/checkbox/checkbox";
 import { Input } from "./components/ui/input/input";
 import { Textarea } from "./components/ui/textarea/textarea";
 import { Title } from "./components/ui/title/title";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { Select } from "./components/ui/select/select";
+import { UploadField } from "./components/ui/upload-field/upload-field";
+import {QueryClientProvider, QueryClient} from '@tanstack/react-query'
+
+
+
+const queryClient = new QueryClient()
+
 
 export const validEmail =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -14,27 +22,45 @@ interface RegFileds {
   password: string;
 }
 
+
+interface UploadInt {
+img:string;
+}
+
 function App() {
   const {
-    register,
+    //register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
-  } = useForm<RegFileds>({
+  } = useForm<UploadInt>({
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<RegFileds> = (data) => {
-    reset();
-    alert("Регистрация прошла успешно!");
+  // const onSubmit: SubmitHandler<RegFileds> = (data) => {
+  //   reset();
+  //   alert("Регистрация прошла успешно!");
+  // };
+
+  // const onSubmit: SubmitHandler<RegFileds> = (data) => {
+  //   reset();
+  //   alert("Регистрация прошла успешно!");
+  // };
+
+
+  const onSubmit: SubmitHandler<UploadInt> = (data) => {
+    alert("Загрузка прошла успешно!");
   };
 
 
-  const [check, setCheck] = useState(false)
+
+  //const [check, setCheck] = useState(false)
 
   return (
-    <div className="App">
-      <Button
+    <QueryClientProvider client={queryClient}>
+         <div className="App">
+      {/* <Button
         text="text"
         variant="primary"
         onClick={() => console.log(1)}
@@ -74,11 +100,26 @@ function App() {
         <button>submit</button>
       </form>
       <Textarea className="textarea" name="textarea" value="hello"></Textarea>
+      <Select className="select" name="select" value="hello" variant="active"></Select> */}
+    <form onSubmit={handleSubmit(onSubmit)}>
+
+         <Controller name="img" control={control}  defaultValue="" render={({field: {value, onChange}, fieldState: {error}}) => (
+                <UploadField  placeholder="Фото" error={error} folder="photos" value={value} onChange={onChange}/>
+
+         )}
+          rules={{
+            required: 'Фото обязательное поле!'
+          }}
+        
+         />
+  <button>send</button>
+    </form>
     </div>
+    </QueryClientProvider>
   );
 }
 
 export default App;
 
 
-// React-hook-form,селект + react-hook-form 
+// react-hook-form(control, controller), запросы 
