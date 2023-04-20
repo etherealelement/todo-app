@@ -1,43 +1,28 @@
-import { FC } from "react";
-import { InputTextarea } from "./textarea.props";
+import {  ForwardedRef, forwardRef } from "react";
+import { TextAreaProps } from "./textarea.props";
 import styles from "./textarea.module.css";
-import { SubmitHandler, useForm } from "react-hook-form";
+import clsx from 'clsx'
 
-export const Textarea: FC<InputTextarea> = ({
-  name,
+export const Textarea = forwardRef( ({
+
   placeholder,
-  value,
   className,
+  error,
   ...props
-}) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<InputTextarea>();
-
-  const onSubmit: SubmitHandler<InputTextarea> = (data) => {
-    alert(`Данные получены! от ${data.name}`);
-  };
+} : TextAreaProps, ref:ForwardedRef<HTMLTextAreaElement>) => {
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <textarea
-          {...register("name", {
-            required: "Поле обязательно к заполнению",
-						minLength: {
-							value: 1,
-							message: "Не менее одного символа"
-						},
-          })}
-          className={styles.textarea}
+        <label>
+          <textarea
+          placeholder={placeholder}
+          className={clsx(styles.textarea, className)}
+          ref={ref}
+          {...props}
         ></textarea>
-        {errors.name && <div style={{ color: "red" }}>{errors.name.message}</div>}
-        <div>
-					<button>Send</button>
-				</div>
-      </form>
-    </>
+        		{error &&  <div className={styles.error}>{error.message}</div>}
+        </label>
   );
-};
+})
+
+
+Textarea.displayName = 'Textarea'

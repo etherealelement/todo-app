@@ -1,6 +1,16 @@
+import { DetailedHTMLProps,SelectHTMLAttributes } from "react";
+import { FieldError } from "react-hook-form"
 
-import { InputHTMLAttributes } from "react";
 
-export interface SelectProps extends InputHTMLAttributes<HTMLInputElement> {
-	variant: "active" | "disable";
+
+
+export interface SelectOption {
+	value:string;
+	label:string
+}
+
+
+export interface SelectProps extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
+	values: SelectOption[],
+	error?:FieldError | undefined
 }

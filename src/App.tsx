@@ -8,7 +8,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Select } from "./components/ui/select/select";
 import { UploadField } from "./components/ui/upload-field/upload-field";
 import {QueryClientProvider, QueryClient} from '@tanstack/react-query'
-
+import {AuthPage} from './pages/auth/Auth.page'
 
 
 const queryClient = new QueryClient()
@@ -29,24 +29,12 @@ img:string;
 
 function App() {
   const {
-    //register,
     handleSubmit,
-    reset,
     control,
     formState: { errors },
   } = useForm<UploadInt>({
     mode: "onChange",
   });
-
-  // const onSubmit: SubmitHandler<RegFileds> = (data) => {
-  //   reset();
-  //   alert("Регистрация прошла успешно!");
-  // };
-
-  // const onSubmit: SubmitHandler<RegFileds> = (data) => {
-  //   reset();
-  //   alert("Регистрация прошла успешно!");
-  // };
 
 
   const onSubmit: SubmitHandler<UploadInt> = (data) => {
@@ -55,52 +43,11 @@ function App() {
 
 
 
-  //const [check, setCheck] = useState(false)
 
   return (
     <QueryClientProvider client={queryClient}>
          <div className="App">
-      {/* <Button
-        text="text"
-        variant="primary"
-        onClick={() => console.log(1)}
-      ></Button>
-      <Title weight="bold">Пвапва</Title>
-      <Title weight="regular">павап</Title>
-      <Checkbox checked={check} onChange={(e) => setCheck(e.target.checked)} variant="active" className="checkbox"></Checkbox>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          {...register("email", {
-            required: "Емайл обязателен!",
-            pattern: {
-              value: validEmail,
-              message: "Пожалуйста, введите корректный адрес!",
-            },
-          })}
-          name="email"
-          error={errors.email}
-        ></Input>
-        <Input
-          {...register("password", {
-            required: "Пароль обязателен!",
-            minLength: {
-              value: 5, 
-              message: 'Пароль должен быть не менее 5 символов!!!'
-            },
-            maxLength: {
-              value: 30, 
-              message: 'Пароль должен быть не больше 10 символов!!!'
-            },
-            
-          })}
-          error={errors.password}
-          name="password"
-        ></Input>
-
-        <button>submit</button>
-      </form>
-      <Textarea className="textarea" name="textarea" value="hello"></Textarea>
-      <Select className="select" name="select" value="hello" variant="active"></Select> */}
+     
     <form onSubmit={handleSubmit(onSubmit)}>
 
          <Controller name="img" control={control}  defaultValue="" render={({field: {value, onChange}, fieldState: {error}}) => (
@@ -112,6 +59,9 @@ function App() {
           }}
         
          />
+
+         <AuthPage />
+
   <button>send</button>
     </form>
     </div>
@@ -122,4 +72,3 @@ function App() {
 export default App;
 
 
-// react-hook-form(control, controller), запросы 

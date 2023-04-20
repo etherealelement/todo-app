@@ -1,23 +1,27 @@
-import { FC } from 'react';
-import { SelectProps } from './select.props';
+import {  ForwardedRef, forwardRef } from "react";
+import {SelectProps} from './select.props'
 import styles from "./select.module.css";
-import { SubmitHandler, useForm} from "react-hook-form";
+import clsx from 'clsx'
 
-export const Select: FC<SelectProps> = ({name, placeholder,value, className, ...props}) => {
-	const {register , handleSubmit} = useForm<SelectProps>();
+export const Select = forwardRef(({
 
-	const onSubmit: SubmitHandler<SelectProps> = (data) => {
-		alert(`Данные получены! от ${data.name}`)
-	}
+  className,
+  error,
+	values,
+  ...props
+} : SelectProps, ref:ForwardedRef<HTMLSelectElement>) => {
 
-	return <>
-		<form onSubmit={handleSubmit(onSubmit)}>
-	<select {...register("name")} className={styles.select}>
-        <option>Выберите пункт</option>
-		<option>Пункт 1</option>
-		<option>Пункт 2</option>
-		<option>Пункт 3</option>
-</select>
-		</form>
-	</>
-};
+  return (
+      <div>
+				<select  className={clsx(styles.select, className)} ref={ref}>
+			{values.map((opt, idx) => <option key={`${opt.label}-${opt.value}-${idx}`} value={opt.value}>
+				{opt.label}
+			</option>)}
+			 </select>
+			 {error &&  <div className={styles.error}>{error.message}</div>}
+			</div>
+  );
+})
+
+
+Select.displayName = 'Select'
